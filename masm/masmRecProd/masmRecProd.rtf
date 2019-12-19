@@ -1,0 +1,295 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Courier New;}{\f1\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.17134}\viewkind4\uc1 
+\pard\f0\fs22\lang1033 Microsoft (R) Macro Assembler Version 14.14.26430.0\tab     07/17/18 14:13:51\par
+\par
+(recProd.asm\tab\tab\tab\tab\tab\tab      Page 1 - 1\par
+\par
+\par
+\tab\tab\tab\tab TITLE      (recProd.asm)\par
+\par
+\tab\tab\tab\tab ; This program multiplies using recursive addition\par
+\tab\tab\tab\tab ; Last update:\par
+\tab\tab\tab\tab ; John Michael Raimondi\par
+\par
+\tab\tab\tab\tab INCLUDE Irvine32.inc\par
+\tab\tab\tab       C ; Include file for Irvine32.lib             (Irvine32.inc)\par
+\tab\tab\tab       C \par
+\tab\tab\tab       C ;OPTION CASEMAP:NONE\tab\tab ; optional: make identifiers case-sensitive\par
+\tab\tab\tab       C \par
+\tab\tab\tab       C INCLUDE SmallWin.inc\tab\tab ; MS-Windows prototypes, structures, and constants\par
+\tab\tab\tab       C .NOLIST\par
+\tab\tab\tab       C .LIST\par
+\tab\tab\tab       C \par
+\tab\tab\tab       C INCLUDE VirtualKeys.inc\par
+\tab\tab\tab       C ; VirtualKeys.inc\par
+\tab\tab\tab       C .NOLIST\par
+\tab\tab\tab       C .LIST\par
+\tab\tab\tab       C \par
+\tab\tab\tab       C \par
+\tab\tab\tab       C .NOLIST\par
+\tab\tab\tab       C .LIST\par
+\tab\tab\tab       C \par
+ 00000000\tab\tab\tab .data\par
+ = 0000000D\tab\tab\tab CR\tab EQU\tab 0Dh\par
+ = 0000000A\tab\tab\tab LF\tab EQU\tab 0Ah\par
+ = 0000001B\tab\tab\tab ESCAPE\tab EQU\tab 1Bh\par
+ = 00000020\tab\tab\tab SPC\tab EQU\tab 20h\par
+ = 0000002A\tab\tab\tab multOP\tab EQU\tab 2Ah\par
+ = 0000002B\tab\tab\tab addOP\tab EQU\tab 2Bh\par
+ = 0000002D\tab\tab\tab subOP\tab EQU\tab 2Dh\par
+ = 0000002F\tab\tab\tab divOP\tab EQU\tab 2Fh\par
+\par
+ 00000000 00000000\tab\tab fd\tab dword\tab ?\par
+ 00000004 6F 75 74 70 75\tab ofilename\tab byte\tab "output.out", 0\par
+\tab    74 2E 6F 75 74\par
+\tab    00\par
+ 0000000F 69 6E 70 75 74\tab ifilename\tab byte\tab "input.in",0\par
+\tab    2E 69 6E 00\par
+ 00000018 00000000\tab\tab bytesRead\tab dword\tab ?\par
+ 0000001C  00000004 [\tab\tab numbers\tab\tab dword\tab 4\tab dup(0)\par
+\tab     00000000\par
+\tab    ]\par
+ 0000002C  00000050 [\tab\tab inputData\tab\tab byte\tab 80\tab dup(SPC)\par
+\tab     20\par
+\tab    ]\par
+ 0000007C 61 6E 73 77 65\tab output1\tab\tab byte\tab "answer 1 = "\par
+\tab    72 20 31 20 3D\par
+\tab    20\par
+ 00000087  00000014 [\tab\tab answer1\tab\tab byte\tab 20\tab dup(0)\par
+\tab     00\par
+\tab    ]\par
+ 0000009B 61 6E 73 77 65\tab output2\tab\tab byte\tab "answer 2 = "\par
+\tab    72 20 32 20 3D\par
+\tab    20\par
+ 000000A6  00000014 [\tab\tab answer2\tab\tab byte\tab 20\tab dup(0)\par
+\tab     00\par
+\tab    ]\par
+\par
+ 00000000\tab\tab\tab .code\par
+\tab\tab\tab\tab ;----------------------------------------------------------------\par
+ 00000000\tab\tab\tab betterItoA\tab PROC\tab ;eax has #\par
+ 00000000  BB 0000000A\tab mov\tab ebx,10\par
+ 00000005  B9 00000000\tab mov\tab ecx,0\par
+ 0000000A  8B 7C 24 04\tab mov\tab edi,[esp+4] ;offset to store\par
+ 0000000E\tab\tab\tab next:\par
+ 0000000E  83 F8 00\tab\tab cmp\tab eax,0\par
+ 00000011  74 0F\tab\tab\tab je\tab done\par
+ 00000013  BA 00000000\tab mov\tab edx,0\par
+ 00000018  F7 F3\tab\tab\tab div\tab ebx\par
+ 0000001A  80 C2 30\tab\tab add\tab dl,30h\par
+ 0000001D  41\tab\tab\tab inc\tab ecx\par
+ 0000001E  66| 52\tab\tab push\tab dx\tab ;esp - 2\par
+ 00000020  EB EC\tab\tab\tab jmp\tab next\par
+ 00000022\tab\tab\tab done:\par
+ 00000022  83 F9 00\tab\tab cmp\tab ecx,0\par
+ 00000025  74 08\tab\tab\tab je\tab realDone\par
+ 00000027  66| 5A\tab\tab pop\tab dx\par
+ 00000029  88 17\tab\tab\tab mov\tab [edi],dl\par
+ 0000002B  47\tab\tab\tab inc\tab edi\par
+ 0000002C  49\tab\tab\tab dec\tab ecx\par
+ 0000002D  EB F3\tab\tab\tab jmp\tab done\par
+ 0000002F\tab\tab\tab realDone:\par
+ 0000002F  B2 0D\tab\tab\tab mov\tab dl,CR\par
+ 00000031  88 17\tab\tab\tab mov\tab [edi],dl\par
+ 00000033  47\tab\tab\tab inc\tab edi\par
+ 00000034  B2 0A\tab\tab\tab mov\tab dl,LF\par
+ 00000036  88 17\tab\tab\tab mov\tab [edi],dl\par
+ 00000038  C3\tab\tab\tab ret\par
+ 00000039\tab\tab\tab betterItoA\tab ENDP\par
+\tab\tab\tab\tab ;----------------------------------------------------------------\par
+ 00000039\tab\tab\tab myWriteToFile\tab PROC\par
+ 00000039\tab\tab\tab\tab nextchar:\par
+ 00000039  8A 02\tab\tab\tab\tab mov\tab al,[edx]\par
+ 0000003B  3C 00\tab\tab\tab\tab cmp\tab al,0\par
+ 0000003D  74 16\tab\tab\tab\tab je\tab alldone\par
+ 0000003F  A1 00000000 R\tab\tab mov\tab eax,fd\par
+ 00000044  B9 00000001\tab\tab mov\tab ecx,1\par
+ 00000049  8B DA\tab\tab\tab\tab mov\tab ebx,edx\tab ;save edx\par
+ 0000004B  E8 00000000 E\tab\tab call\tab WriteToFile\par
+ 00000050  8B D3\tab\tab\tab\tab mov\tab edx,ebx\tab ;restore edx\par
+ 00000052  42\tab\tab\tab\tab inc\tab edx\par
+ 00000053  EB E4\tab\tab\tab\tab jmp\tab nextchar\par
+ 00000055\tab\tab\tab alldone:\par
+ 00000055  C3\tab\tab\tab\tab ret\par
+ 00000056\tab\tab\tab myWriteToFile\tab ENDP\par
+\tab\tab\tab\tab ;----------------------------------------------------------------\par
+ 00000056\tab\tab\tab bestAtoI\tab PROC\par
+ 00000056  55\tab\tab\tab\tab push\tab ebp\par
+ 00000057  8B EC\tab\tab\tab\tab mov\tab ebp,esp\par
+ 00000059  51\tab\tab\tab\tab push\tab ecx\tab ;save ecx\par
+ 0000005A  56\tab\tab\tab\tab push\tab esi\tab ;save esi\par
+ 0000005B  50\tab\tab\tab\tab push\tab eax\tab ;save eax\par
+ 0000005C  52\tab\tab\tab\tab push\tab edx\par
+ 0000005D  53\tab\tab\tab\tab push\tab ebx\par
+ 0000005E  8B 4D 08\tab\tab\tab mov\tab ecx,[ebp+8]\tab ;digits count to ecx\par
+ 00000061  8B F5\tab\tab\tab\tab mov\tab esi,ebp\par
+ 00000063  83 C6 08\tab\tab\tab add\tab esi,8\par
+ 00000066  B8 00000004\tab\tab\tab mov\tab eax,4\tab ;multiply setup\par
+ 0000006B  F7 E1\tab\tab\tab\tab mul\tab ecx\tab ;digits * 4\par
+ 0000006D  03 F0\tab\tab\tab\tab add\tab esi,eax\tab ;move esi to first digit\par
+ 0000006F  B8 00000000\tab\tab mov\tab eax,0\par
+ 00000074  BA 0000000A\tab\tab mov\tab edx,10\par
+ 00000079\tab\tab\tab\tab next:\par
+ 00000079  83 F9 00\tab\tab\tab cmp\tab ecx,0\par
+ 0000007C  74 14\tab\tab\tab\tab je\tab done\par
+ 0000007E  8B 1E\tab\tab\tab\tab mov\tab ebx,[esi]\par
+ 00000080  F7 E2\tab\tab\tab\tab mul\tab edx\par
+ 00000082  BA 0000000A\tab\tab mov\tab edx,10\par
+ 00000087  80 EB 30\tab\tab\tab sub\tab bl,30h\par
+ 0000008A  03 C3\tab\tab\tab\tab add\tab eax,ebx\par
+ 0000008C  83 EE 04\tab\tab\tab sub\tab esi,4\tab ;point at count on finish\par
+ 0000008F  49\tab\tab\tab\tab dec\tab ecx\par
+ 00000090  EB E7\tab\tab\tab\tab jmp\tab next\par
+ 00000092\tab\tab\tab\tab done:\par
+ 00000092  89 06\tab\tab\tab\tab mov\tab [esi],eax\tab ;replace count with int number\par
+ 00000094  5B\tab\tab\tab\tab pop\tab ebx\par
+ 00000095  5A\tab\tab\tab\tab pop\tab edx\par
+ 00000096  58\tab\tab\tab\tab pop\tab eax\par
+ 00000097  5E\tab\tab\tab\tab pop\tab esi\par
+ 00000098  59\tab\tab\tab\tab pop\tab ecx\par
+ 00000099  5D\tab\tab\tab\tab pop\tab ebp\par
+ 0000009A  C3\tab\tab\tab\tab ret\par
+ 0000009B\tab\tab\tab bestAtoI\tab ENDP\par
+\tab\tab\tab\tab ;----------------------------------------------------------------\par
+ 0000009B\tab\tab\tab recursiveMultiply\tab PROC\par
+ 0000009B  55\tab\tab\tab\tab push\tab ebp\par
+ 0000009C  8B EC\tab\tab\tab\tab mov\tab ebp,esp\par
+ 0000009E  8B 45 08\tab\tab\tab mov\tab eax,[ebp+8]\tab ;big #\par
+ 000000A1  8B 4D 0C\tab\tab\tab mov\tab ecx,[ebp+12]\tab ;small #\par
+ 000000A4  83 F9 00\tab\tab\tab cmp\tab ecx,0\par
+ 000000A7  75 02\tab\tab\tab\tab jne\tab nextAdd\par
+ 000000A9  5D\tab\tab\tab\tab pop\tab ebp\par
+ 000000AA  C3\tab\tab\tab\tab ret\par
+ 000000AB\tab\tab\tab\tab nextAdd:\par
+ 000000AB  49\tab\tab\tab\tab dec\tab ecx\par
+ 000000AC  51\tab\tab\tab\tab push\tab ecx\par
+ 000000AD  50\tab\tab\tab\tab push\tab eax\par
+ 000000AE  E8 FFFFFFE8\tab\tab\tab call\tab recursiveMultiply\par
+ 000000B3  5B\tab\tab\tab\tab pop\tab ebx\par
+ 000000B4  58\tab\tab\tab\tab pop\tab eax\par
+ 000000B5  03 C3\tab\tab\tab\tab add\tab eax,ebx\par
+ 000000B7  89 45 0C\tab\tab\tab mov\tab [ebp+12],eax\tab ;sum to old small\par
+ 000000BA  5D\tab\tab\tab\tab pop\tab ebp\par
+ 000000BB  C3\tab\tab\tab\tab ret\par
+ 000000BC\tab\tab\tab recursiveMultiply\tab ENDP\par
+\tab\tab\tab\tab ;----------------------------------------------------------------\par
+ 000000BC\tab\tab\tab getNumbers\tab PROC\par
+ 000000BC  55\tab\tab\tab\tab push\tab ebp\par
+ 000000BD  8B EC\tab\tab\tab\tab mov\tab ebp,esp\par
+ 000000BF  8B 0D 00000018 R\tab\tab mov\tab ecx,bytesRead\par
+ 000000C5  BE 0000002C R\tab\tab mov\tab esi,offset\tab inputData\par
+ 000000CA  BF 0000001C R\tab\tab mov\tab edi,offset\tab numbers\par
+ 000000CF\tab\tab\tab nextchar:\par
+ 000000CF  83 F9 00\tab\tab\tab cmp\tab ecx,0\par
+ 000000D2  74 30\tab\tab\tab\tab je\tab done\par
+ 000000D4  8A 06\tab\tab\tab\tab mov\tab al,[esi]\par
+ 000000D6  49\tab\tab\tab\tab dec\tab ecx\par
+ 000000D7  46\tab\tab\tab\tab inc\tab esi\par
+ 000000D8  3C 30\tab\tab\tab\tab cmp\tab al,'0'\par
+ 000000DA  7C 08\tab\tab\tab\tab jl\tab atoi\par
+ 000000DC  3C 39\tab\tab\tab\tab cmp\tab al,'9'\par
+ 000000DE  7F 04\tab\tab\tab\tab jg\tab atoi\par
+ 000000E0  50\tab\tab\tab\tab push\tab eax\par
+ 000000E1  42\tab\tab\tab\tab inc\tab edx\par
+ 000000E2  EB EB\tab\tab\tab\tab jmp\tab nextchar\par
+ 000000E4\tab\tab\tab\tab atoi:\par
+ 000000E4  8A 5E FE\tab\tab\tab mov\tab bl,[esi-2];look at previous\par
+ 000000E7  80 FB 30\tab\tab\tab cmp\tab bl,'0'\par
+ 000000EA  7C E3\tab\tab\tab\tab jl\tab nextchar\par
+ 000000EC  80 FB 39\tab\tab\tab cmp\tab bl,'9'\par
+ 000000EF  7F DE\tab\tab\tab\tab jg\tab nextchar\par
+ 000000F1  52\tab\tab\tab\tab push\tab edx\par
+ 000000F2  E8 FFFFFF5F\tab\tab\tab call\tab bestAtoI\par
+ 000000F7  58\tab\tab\tab\tab pop\tab eax\par
+ 000000F8  89 07\tab\tab\tab\tab mov\tab [edi],eax\par
+ 000000FA  83 C7 04\tab\tab\tab add\tab edi,4\par
+ 000000FD  BA 00000000\tab\tab\tab mov\tab edx,0\par
+ 00000102  EB CB\tab\tab\tab\tab jmp\tab nextchar\par
+ 00000104\tab\tab\tab\tab done:\par
+ 00000104  52\tab\tab\tab\tab push\tab edx\par
+ 00000105  E8 FFFFFF4C\tab\tab\tab call\tab bestAtoI\par
+ 0000010A  58\tab\tab\tab\tab pop\tab eax\par
+ 0000010B  89 07\tab\tab\tab\tab mov\tab [edi],eax\par
+ 0000010D  8B E5\tab\tab\tab\tab mov\tab esp,ebp\tab ;remove junk from stack\par
+ 0000010F  5D\tab\tab\tab\tab pop\tab ebp\par
+ 00000110  C3\tab\tab\tab\tab ret\par
+ 00000111\tab\tab\tab getNumbers\tab ENDP\par
+\tab\tab\tab\tab ;----------------------------------------------------------------\par
+ 00000111\tab\tab\tab main PROC\par
+ 00000111  BA 0000000F R\tab\tab mov\tab edx,offset\tab ifilename\par
+ 00000116  E8 00000000 E\tab\tab call\tab OpenInputFile\tab ;offset of a filename in edx, returns eax = fd\par
+ 0000011B  50\tab\tab\tab\tab push\tab eax\par
+ 0000011C  BA 0000002C R\tab\tab mov\tab edx,offset\tab inputData\par
+ 00000121  B9 00000050\tab\tab mov\tab ecx,80\par
+ 00000126  E8 00000000 E\tab\tab call\tab ReadFromFile\par
+ 0000012B  A3 00000018 R\tab\tab mov\tab bytesRead,eax\par
+ 00000130  58\tab\tab\tab\tab pop\tab eax\par
+ 00000131  E8 00000000 E\tab\tab call\tab CloseFile\par
+ 00000136  E8 FFFFFF81\tab\tab call\tab getNumbers\par
+ 0000013B  BE 0000001C R\tab\tab mov\tab esi,offset\tab numbers\par
+ 00000140  8B 06\tab\tab\tab\tab mov\tab eax,[esi]\par
+ 00000142  83 C6 04\tab\tab\tab add\tab esi,4\par
+ 00000145  8B 1E\tab\tab\tab\tab mov\tab ebx,[esi]\par
+ 00000147  3B C3\tab\tab\tab\tab cmp\tab eax,ebx\par
+ 00000149  7F 17\tab\tab\tab\tab jg\tab swapNums\par
+ 0000014B  50\tab\tab\tab\tab push\tab eax\tab ;smaller first\par
+ 0000014C  53\tab\tab\tab\tab push\tab ebx\par
+ 0000014D  E8 FFFFFF49\tab\tab call\tab recursiveMultiply\par
+ 00000152  8B 44 24 04\tab\tab mov\tab eax,[esp+4]\par
+ 00000156  68 00000087 R\tab\tab push\tab offset\tab answer1\par
+ 0000015B  E8 FFFFFEA0\tab\tab call\tab betterItoA\par
+ 00000160  EB 15\tab\tab\tab\tab jmp\tab nextMult\par
+ 00000162\tab\tab\tab swapNums:\par
+ 00000162  53\tab\tab\tab\tab push\tab ebx\tab ;smaller first\par
+ 00000163  50\tab\tab\tab\tab push\tab eax\par
+ 00000164  E8 FFFFFF32\tab\tab call\tab recursiveMultiply\par
+ 00000169  8B 44 24 04\tab\tab mov\tab eax,[esp+4]\par
+ 0000016D  68 00000087 R\tab\tab push\tab offset\tab answer1\par
+ 00000172  E8 FFFFFE89\tab\tab call\tab betterItoA\par
+ 00000177\tab\tab\tab nextMult:\par
+ 00000177  83 C6 04\tab\tab\tab add\tab esi,4\par
+ 0000017A  8B 06\tab\tab\tab\tab mov\tab eax,[esi]\par
+ 0000017C  83 C6 04\tab\tab\tab add\tab esi,4\par
+ 0000017F  8B 1E\tab\tab\tab\tab mov\tab ebx,[esi]\par
+ 00000181  3B C3\tab\tab\tab\tab cmp\tab eax,ebx\par
+ 00000183  7F 17\tab\tab\tab\tab jg\tab swapNums2\par
+ 00000185  50\tab\tab\tab\tab push\tab eax\tab ;smaller first\par
+ 00000186  53\tab\tab\tab\tab push\tab ebx\par
+ 00000187  E8 FFFFFF0F\tab\tab call\tab recursiveMultiply\par
+ 0000018C  8B 44 24 04\tab\tab mov\tab eax,[esp+4]\par
+ 00000190  68 000000A6 R\tab\tab push\tab offset\tab answer2\par
+ 00000195  E8 FFFFFE66\tab\tab call\tab betterItoA\par
+ 0000019A  EB 15\tab\tab\tab\tab jmp\tab fin\par
+ 0000019C\tab\tab\tab swapNums2:\par
+ 0000019C  53\tab\tab\tab\tab push\tab ebx\tab ;smaller first\par
+ 0000019D  50\tab\tab\tab\tab push\tab eax\par
+ 0000019E  E8 FFFFFEF8\tab\tab call\tab recursiveMultiply\par
+ 000001A3  8B 44 24 04\tab\tab mov\tab eax,[esp+4]\par
+ 000001A7  68 000000A6 R\tab\tab push\tab offset\tab answer2\par
+ 000001AC  E8 FFFFFE4F\tab\tab call\tab betterItoA\par
+ 000001B1\tab\tab\tab\tab fin:\par
+ 000001B1  BA 00000004 R\tab\tab mov\tab edx,offset\tab ofilename\par
+ 000001B6  E8 00000000 E\tab\tab call\tab CreateOutputFile\par
+ 000001BB  A3 00000000 R\tab\tab mov\tab fd,eax\tab ;setup write after this\par
+ 000001C0  BA 0000007C R\tab\tab mov\tab edx,offset\tab output1\par
+ 000001C5  E8 FFFFFE6F\tab\tab call\tab myWriteToFile\par
+ 000001CA  A1 00000000 R\tab\tab mov\tab eax,fd\par
+ 000001CF  BA 0000009B R\tab\tab mov\tab edx,offset\tab output2\par
+ 000001D4  E8 FFFFFE60\tab\tab call\tab myWriteToFile\par
+ 000001D9  A1 00000000 R\tab\tab mov\tab eax,fd\par
+ 000001DE  E8 00000000 E\tab\tab call\tab CloseFile\par
+\tab\tab\tab\tab\tab exit\par
+ 000001E3  6A 00\tab    *\tab     push   +000000000h\par
+ 000001E5  E8 00000000 E   *\tab     call   ExitProcess\par
+ 000001EA\tab\tab\tab main ENDP\par
+\tab\tab\tab\tab END main\par
+\page Microsoft (R) Macro Assembler Version 14.14.26430.0\tab     07/17/18 14:13:51\par
+\par
+(recProd.asm\tab\tab\tab\tab\tab\tab      Symbols 2 - 1\par
+\par
+output.out\par
+\par
+answer 1 = 2150\par
+answer 2 = 2077740\f1\lang9\par
+}
+ 
