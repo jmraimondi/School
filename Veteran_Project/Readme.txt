@@ -1,1 +1,0 @@
-I did not work on the front-end applications - Admin and Viewer.
