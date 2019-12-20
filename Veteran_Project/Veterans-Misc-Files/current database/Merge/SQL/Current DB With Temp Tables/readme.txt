@@ -1,0 +1,1 @@
+Contains current database including all temporary tables.

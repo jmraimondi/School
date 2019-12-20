@@ -1,0 +1,43 @@
+﻿<Window x:Class="Musuem_Viewer.CemeteryInformation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Musuem_Viewer"
+        mc:Ignorable="d"
+        Title="Cemetery Information" Height="900" Width="1250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="115"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="Btn_CloseWin" Content="Close" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.Row="0" Click="Btn_CloseWin_Click"/>
+            <Label Content="Cemetery Information" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold"/>
+            <Label x:Name="Lbl_CemeteryName" Content="{Binding Path=Veteran.CemName}" HorizontalAlignment="Center" Margin="0,32,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <Label x:Name="Lbl_CemeteryAddress" Content="{Binding Path=Veteran.CemAddress}" HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <Label x:Name="Lbl_CemeteryCity" Content="{Binding Path=Veteran.CemCity}" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <Label x:Name="Lbl_CemeteryGPS" Content="{Binding Path=Veteran.CemGPS}" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <Label Content="Section" HorizontalAlignment="Center" Margin="0,15,100,0" VerticalAlignment="Top" Grid.Row="2" FontWeight="Bold"/>
+            <Label x:Name="Lbl_Section" Content="{Binding Path=Veteran.CemSection}" HorizontalAlignment="Center" Margin="100,15,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+            <Label Content="Row" HorizontalAlignment="Center" Margin="0,45,100,0" VerticalAlignment="Top" Grid.Row="2" FontWeight="Bold"/>
+            <Label x:Name="Lbl_Row" Content="{Binding Path=Veteran.CemRow}" HorizontalAlignment="Center" Margin="100,45,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+            <Label Content="Marker Location" HorizontalAlignment="Center" Margin="0,75,120,0" VerticalAlignment="Top" Grid.Row="2" FontWeight="Bold"/>
+            <Label x:Name="Lbl_MarkerLocation" Content="{Binding Path=Veteran.MarkerLocation}" HorizontalAlignment="Center" Margin="120,75,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        </Grid>
+        <Label Content="Directions To Cemetery" HorizontalAlignment="Center" Margin="0,40,0,5" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" FontWeight="Bold"/>
+        <Image x:Name="Img_CemDirectionPhoto" HorizontalAlignment="Stretch" Margin="10,75,10,35" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" MouseLeftButtonDown="Img_CemDirectionPhoto_MouseLeftButtonDown"/>
+        <Label Content="Cemetery Aerial Photo" HorizontalAlignment="Center" Margin="0,40,0,5" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" FontWeight="Bold"/>
+        <Image x:Name="Img_CemeteryAirPhoto" HorizontalAlignment="Stretch" Margin="10,75,10,35" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="2" MouseLeftButtonDown="Img_CemeteryAirPhoto_MouseLeftButtonDown"/>
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Museum_Admin.Conflicts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Museum_Admin"
+             mc:Ignorable="d" 
+             d:DesignHeight="1050" d:DesignWidth="1700" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*" MinHeight="300"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Conflicts" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+        <ListBox x:Name="ListBox_ConflictDetails" HorizontalAlignment="Left" Width="450" Margin="20,50,0,20" ItemsSource="{Binding}" DisplayMemberPath="Conflict" SelectedValuePath="Conflict" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" SelectionChanged="ListBox_ConflictDetails_SelectionChanged" />
+        <Button x:Name="Btn_AddConflict" Content="Add Conflict" HorizontalAlignment="Left" Margin="485,60,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" Click="Btn_AddConflict_Click"/>
+        <Button x:Name="Btn_EditConflict" Content="Edit Conflict" HorizontalAlignment="Left" Margin="485,100,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" Click="Btn_EditConflict_Click"/>
+        <Button x:Name="Btn_DeleteConflict" Content="Delete Conflict" HorizontalAlignment="Left" Margin="485,140,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" Click="Btn_DeleteConflict_Click"/>
+        <!--Hidden Items-->
+        <Label x:Name="Lbl_Conflicts" Content="Conflict Name" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" FontWeight="Bold" Visibility="Hidden"/>
+        <TextBox x:Name="TxtBox_Conflicts" HorizontalAlignment="Left" Height="25" Margin="20,50,0,0" VerticalAlignment="Top" Width="250" TextWrapping="Wrap" Text="{Binding Path=CurrentConflict.Conflict, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="2" Grid.Row="1" Visibility="Hidden" KeyDown="TxtBox_Conflicts_KeyDown"/>
+        <Button x:Name="Btn_ConflictSave" Content="Save" HorizontalAlignment="Left" Margin="105,100,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1" Click="Btn_ConflictSave_Click" Visibility="Hidden"/>
+        <Button x:Name="Btn_ConflictCancel" Content="Cancel" HorizontalAlignment="Left" Margin="195,100,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1" Click="Btn_ConflictCancel_Click" Visibility="Hidden"/>
+        <!--End of Hidden Items-->
+    </Grid>
+</UserControl>

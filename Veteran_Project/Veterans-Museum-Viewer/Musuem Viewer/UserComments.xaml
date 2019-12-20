@@ -1,0 +1,15 @@
+﻿<Window x:Class="Musuem_Viewer.UserComments"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Musuem_Viewer"
+        mc:Ignorable="d"
+        Title="Add Corrections / Updates" Height="450" Width="800">
+    <Grid>
+        <Label Content="Enter Corrections / Updates Below:" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Button x:Name="Btn_SaveClose" Content="Save And Close" HorizontalAlignment="Right" Margin="0,10,205,10" VerticalAlignment="Bottom" Width="130" Click="Btn_SaveClose_Click"/>
+        <Button x:Name="Btn_NoSaveClose" Content="Close Without Saving" HorizontalAlignment="Right" Margin="200,10,15,10" VerticalAlignment="Bottom" Width="175" Click="Btn_NoSaveClose_Click"/>
+        <TextBox x:Name="TxtBox_Comment" HorizontalAlignment="Stretch" Margin="15,40,15,60" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" AcceptsReturn="True"/>
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+INSERT INTO UserComments (ID, UserComment) VALUES (57,'"REVEREND MIKE"');
+INSERT INTO UserComments (ID, UserComment) VALUES (2210,'DIED FROM CANCER CAUSED BY AGENT ORANGE');
+INSERT INTO UserComments (ID, UserComment) VALUES (2261,'Korea 1969-1970 (Agent Orange)');
+INSERT INTO UserComments (ID, UserComment) VALUES (2273,'Combat Medic England - France - Germany');
+INSERT INTO UserComments (ID, UserComment) VALUES (2286,'Pacific Theater');
+INSERT INTO UserComments (ID, UserComment) VALUES (2287,'Pacific Theater');
+INSERT INTO UserComments (ID, UserComment) VALUES (2292,'ETO');
+INSERT INTO UserComments (ID, UserComment) VALUES (2293,'American Expeditionary Force (AEF) France');
+INSERT INTO UserComments (ID, UserComment) VALUES (2298,'Fort Bragg North Carolina');
+INSERT INTO UserComments (ID, UserComment) VALUES (2299,'American Expeditionary Force (AEF)');
+INSERT INTO UserComments (ID, UserComment) VALUES (2301,'Pacific');
+INSERT INTO UserComments (ID, UserComment) VALUES (2338,'Killed in Action');
+INSERT INTO UserComments (ID, UserComment) VALUES (2443,'NAVAL AVIATION "BLUE TAIL FLYERS" MISSING IN ACTION');
+INSERT INTO UserComments (ID, UserComment) VALUES (2476,'PACIFIC THEATER');
+INSERT INTO UserComments (ID, UserComment) VALUES (3158,'BATTLE OF THRE BULGE/ GUNNER ON HALFTRACK');
+INSERT INTO UserComments (ID, UserComment) VALUES (3235,'Combat Medic England - France - Germany');
+INSERT INTO UserComments (ID, UserComment) VALUES (3248,'Pacific Theater');
+INSERT INTO UserComments (ID, UserComment) VALUES (3252,'ETO');
+INSERT INTO UserComments (ID, UserComment) VALUES (3253,'American Expeditionary Force (AEF) France');
+INSERT INTO UserComments (ID, UserComment) VALUES (3258,'Fort Bragg North Carolina');
+INSERT INTO UserComments (ID, UserComment) VALUES (3259,'American Expeditionary Force (AEF)');
+INSERT INTO UserComments (ID, UserComment) VALUES (3261,'Pacific');
+INSERT INTO UserComments (ID, UserComment) VALUES (3280,'Pleiku (Agent Orange)');
+INSERT INTO UserComments (ID, UserComment) VALUES (3281,'Battle of the Bulge');
+INSERT INTO UserComments (ID, UserComment) VALUES (3422,'Light Artillery');
+/*INSERT INTO UserComments (ID, UserComment) VALUES (3593,'GUARD FOR GERMAN PRISONERS OF WAR FORT FRANCIS E. WARREN CHYANNE, WYOMING');*/

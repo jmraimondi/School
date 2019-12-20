@@ -1,0 +1,78 @@
+﻿<Window x:Class="Musuem_Viewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Musuem_Viewer"
+        mc:Ignorable="d"
+        Title="Alabama Veterans Museum" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="*" MinHeight="300"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="TxtBox_Search" HorizontalAlignment="Left" Height="25" Margin="20,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" Grid.Column="1" Grid.Row="1" KeyDown="TxtBox_Search_KeyDown"/>
+            <Label Content="Enter Last Name" HorizontalAlignment="Left" Margin="16,26,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="1" Grid.Row="1"/>
+            <Button x:Name="Btn_Search" Content="Search" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Width="95" Grid.Column="1" Grid.Row="1" Click="Btn_Search_Click"/>
+            <!--Used in case of multiple records found [defaults to hidden]-->
+            <Label x:Name="Lbl_SearchResults" Content="" HorizontalAlignment="Left" Margin="16,0,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="1" Grid.Row="2"/>
+            <Button x:Name="Btn_ViewResults" Content="View Record" HorizontalAlignment="Left" Margin="235,0,0,0" VerticalAlignment="Top" Width="95" Grid.Column="1" Grid.Row="2" Visibility="Hidden" Click="Btn_ViewResults_Click"/>
+            <ListBox x:Name="ListBox_SearchResults" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="20,30,0,10" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="290" Grid.Column="1" Grid.Row="2" Visibility="Hidden" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectedValuePath="IdNum"/>
+            <!--End of used in case of multiple records found-->
+        </Grid>
+        <Image HorizontalAlignment="Stretch" Margin="10,10,20,10" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0">
+            <!--Used to rotate through the service branch pictures-->
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Source"
+                                                   Duration="0:0:50">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <BitmapImage UriSource="/images/AF.jpg"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:10">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <BitmapImage UriSource="/images/AR.jpg"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:20">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <BitmapImage UriSource="/images/CG.jpg"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:30">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <BitmapImage UriSource="/images/MC.jpg"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:40">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <BitmapImage UriSource="/images/NV.jpg"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+    </Grid>
+</Window>

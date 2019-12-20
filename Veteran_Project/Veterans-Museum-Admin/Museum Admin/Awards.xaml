@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Museum_Admin.Awards"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Museum_Admin"
+             mc:Ignorable="d" 
+             d:DesignHeight="1050" d:DesignWidth="1700" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*" MinHeight="300"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Branch" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,20,0,0" FontWeight="Bold" Grid.Column="1" Grid.Row="1" />
+        <ComboBox x:Name="CmbBox_Service" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Width="450" ItemsSource="{Binding BranchList}" SelectedItem="{Binding Path=CurrentBranch}" IsSynchronizedWithCurrentItem="True" Grid.Column="1" Grid.Row="1" SelectionChanged="CmbBox_Service_SelectionChanged"/>
+        <Label Content="Awards" HorizontalAlignment="Left" Margin="15,100,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+        <ListBox x:Name="ListBox_AwardDetails" HorizontalAlignment="Left" Width="450" Margin="20,130,0,20" ItemsSource="{Binding}" DisplayMemberPath="Award" SelectedValuePath="Award" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" SelectionChanged="ListBox_AwardDetails_SelectionChanged"/>
+        <Button x:Name="Btn_AddAward" Content="Add Award" HorizontalAlignment="Left" Margin="485,140,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" Click="Btn_AddAward_Click"/>
+        <Button x:Name="Btn_EditAward" Content="Edit Award" HorizontalAlignment="Left" Margin="485,180,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" Click="Btn_EditAward_Click"/>
+        <Button x:Name="Btn_DeleteAward" Content="Delete Award" HorizontalAlignment="Left" Margin="485,220,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" Click="Btn_DeleteAward_Click"/>
+        <!--Hidden Items-->
+        <Label x:Name="Lbl_Award" Content="Award Name" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" FontWeight="Bold" Visibility="Hidden"/>
+        <TextBox x:Name="TxtBox_Award" HorizontalAlignment="Left" Height="25" Margin="20,50,0,0" VerticalAlignment="Top" Width="250" TextWrapping="Wrap" Text="{Binding Path=CurrentAward.Award, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="2" Grid.Row="1" Visibility="Hidden" KeyDown="TxtBox_Award_KeyDown"/>
+        <Button x:Name="Btn_AwardSave" Content="Save" HorizontalAlignment="Left" Margin="105,100,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1" Visibility="Hidden" Click="Btn_AwardSave_Click"/>
+        <Button x:Name="Btn_AwardCancel" Content="Cancel" HorizontalAlignment="Left" Margin="195,100,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1" Visibility="Hidden" Click="Btn_AwardCancel_Click"/>
+        <!--End of Hidden Items-->
+    </Grid>
+</UserControl>

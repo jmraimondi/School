@@ -1,0 +1,1 @@
+After exporting the 6 db files, these SQL files were used to help update. After updating the tables were merged into a temporary table "vmerge" and from there moved into their permanent tables.

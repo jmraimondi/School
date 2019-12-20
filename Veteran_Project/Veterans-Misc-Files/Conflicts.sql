@@ -1,0 +1,25 @@
+INSERT INTO ConflictList VALUES ('War in Afghanistan');
+INSERT INTO ConflictList VALUES ('Civil War');
+INSERT INTO ConflictList VALUES ('Cold War');
+INSERT INTO ConflictList VALUES ('Desert Shield');
+INSERT INTO ConflictList VALUES ('Desert Storm');
+INSERT INTO ConflictList VALUES ('Grenada');
+INSERT INTO ConflictList VALUES ('Iraq War');
+INSERT INTO ConflictList VALUES ('Korean War');
+INSERT INTO ConflictList VALUES ('Kosovo War');
+INSERT INTO ConflictList VALUES ('Kuwait');
+INSERT INTO ConflictList VALUES ('Lebanon');
+INSERT INTO ConflictList VALUES ('Libya');
+INSERT INTO ConflictList VALUES ('Mexican American War');
+INSERT INTO ConflictList VALUES ('Enduring Freedom');
+INSERT INTO ConflictList VALUES ('Just Cause');
+INSERT INTO ConflictList VALUES ('Persian Gulf War');
+INSERT INTO ConflictList VALUES ('Revolutionary War');
+INSERT INTO ConflictList VALUES ('Southwest Asia');
+INSERT INTO ConflictList VALUES ('Spanish American War');
+INSERT INTO ConflictList VALUES ('Veteran');
+INSERT INTO ConflictList VALUES ('Vietnam Conflict');
+INSERT INTO ConflictList VALUES ('War of 1812');
+INSERT INTO ConflictList VALUES ('WW I');
+INSERT INTO ConflictList VALUES ('WW II');
+

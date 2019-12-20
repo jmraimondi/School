@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Museum_Admin.Cemeteries"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Museum_Admin"
+             mc:Ignorable="d" 
+             d:DesignHeight="1050" d:DesignWidth="1700" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*" MinHeight="300"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Cemeteries" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+        <ListBox x:Name="ListBox_CemeteryDetails" HorizontalAlignment="Left" Width="450" Margin="20,50,0,20" ItemsSource="{Binding}" DisplayMemberPath="Details" SelectedValuePath="Details" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" SelectionChanged="ListBox_CemeteryDetails_SelectionChanged"/>
+        <Button x:Name="Btn_AddCemetery" Content="Add Cemetery" HorizontalAlignment="Left" Margin="485,60,0,0" VerticalAlignment="Top" Width="130" Grid.Column="1" Grid.Row="1" Click="Btn_AddCemetery_Click"/>
+        <Button x:Name="Btn_EditCemetery" Content="Edit Cemetery" HorizontalAlignment="Left" Margin="485,100,0,0" VerticalAlignment="Top" Width="130" Grid.Column="1" Grid.Row="1" Click="Btn_EditCemetery_Click"/>
+        <Button x:Name="Btn_DeleteCemetery" Content="Delete Cemetery" HorizontalAlignment="Left" Margin="485,140,0,0" VerticalAlignment="Top" Width="130" Grid.Column="1" Grid.Row="1" Click="Btn_DeleteCemetery_Click"/>
+        <!--Hidden Items-->
+        <Grid Grid.Column="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="Lbl_CemName" Content="Name" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold" Visibility="Hidden"/>
+            <TextBox x:Name="TxtBox_CemName" HorizontalAlignment="Left" Height="25" Margin="200,20,0,0" VerticalAlignment="Top" Width="250" TextWrapping="Wrap" Text="{Binding Path=CurrentCemetery.Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Visibility="Hidden"/>
+            <Label x:Name="Lbl_CemAddress" Content="Address" HorizontalAlignment="Left" Margin="15,60,0,0" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold" Visibility="Hidden"/>
+            <TextBox x:Name="TxtBox_CemAddress" HorizontalAlignment="Left" Height="25" Margin="200,60,0,0" VerticalAlignment="Top" Width="250" TextWrapping="Wrap" Text="{Binding Path=CurrentCemetery.Address, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Visibility="Hidden"/>
+            <Label x:Name="Lbl_CemCity" Content="City" HorizontalAlignment="Left" Margin="15,100,0,0" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold" Visibility="Hidden"/>
+            <TextBox x:Name="TxtBox_CemCity" HorizontalAlignment="Left" Height="25" Margin="200,100,0,0" VerticalAlignment="Top" Width="250" TextWrapping="Wrap" Text="{Binding Path=CurrentCemetery.City, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Visibility="Hidden"/>
+            <Label x:Name="Lbl_CemGPS" Content="GPS" HorizontalAlignment="Left" Margin="15,140,0,0" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold" Visibility="Hidden"/>
+            <TextBox x:Name="TxtBox_CemGPS" HorizontalAlignment="Left" Height="25" Margin="200,140,0,0" VerticalAlignment="Top" Width="250" TextWrapping="Wrap" Text="{Binding Path=CurrentCemetery.GPS, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Visibility="Hidden"/>
+            <Label x:Name="Lbl_DirPhoto" Content="Directions Photo" HorizontalAlignment="Left" Margin="75,0,0,5" VerticalAlignment="Bottom" Grid.Row="1" FontWeight="Bold" Visibility="Hidden"/>
+            <Image x:Name="Img_CemDirectionPhoto" HorizontalAlignment="Stretch" Margin="10,0,10,45" VerticalAlignment="Stretch" Grid.Row="1" MouseLeftButtonDown="Img_CemDirectionPhoto_MouseLeftButtonDown" Visibility="Hidden"/>
+            <Button x:Name="Btn_SetDirPhoto" Content="Set Photo" HorizontalAlignment="Right" Margin="0,0,135,10" VerticalAlignment="Bottom" Width="100" Grid.Row="1" Visibility="Hidden" Click="Btn_SetDirPhoto_Click"/>
+            <Button x:Name="Btn_DeleteDirPhoto" Content="Delete Photo" HorizontalAlignment="Right" Margin="0,0,20,10" VerticalAlignment="Bottom" Width="100" Grid.Row="1" Visibility="Hidden" Click="Btn_DeleteDirPhoto_Click"/>
+            <Label x:Name="Lbl_AerialPhoto" Content="Aerial Photo" HorizontalAlignment="Left" Margin="75,0,0,5" VerticalAlignment="Bottom" Grid.Row="2" FontWeight="Bold" Visibility="Hidden"/>
+            <Image x:Name="Img_CemeteryAerialPhoto" HorizontalAlignment="Stretch" Margin="10,5,10,45" VerticalAlignment="Stretch" Grid.Row="2" MouseLeftButtonDown="Img_CemeteryAirPhoto_MouseLeftButtonDown" Visibility="Hidden"/>
+            <Button x:Name="Btn_SetAerialPhoto" Content="Set Photo" HorizontalAlignment="Right" Margin="0,0,135,10" VerticalAlignment="Bottom" Width="100" Grid.Row="2" Visibility="Hidden" Click="Btn_SetAerialPhoto_Click"/>
+            <Button x:Name="Btn_DeleteAerialPhoto" Content="Delete Photo" HorizontalAlignment="Right" Margin="0,0,20,10" VerticalAlignment="Bottom" Width="100" Grid.Row="2" Visibility="Hidden" Click="Btn_DeleteAerialPhoto_Click"/>
+            <Button x:Name="Btn_CemSave" Content="Save Record" HorizontalAlignment="Right" Margin="0,5,135,0" VerticalAlignment="Top" Width="100" Grid.Column="2" Grid.Row="3" Visibility="Hidden" Click="Btn_CemSave_Click"/>
+            <Button x:Name="Btn_CemCancel" Content="Cancel" HorizontalAlignment="Right" Margin="0,5,20,0" VerticalAlignment="Top" Width="100" Grid.Column="2" Grid.Row="3" Visibility="Hidden" Click="Btn_CemCancel_Click"/>
+        </Grid>
+        <!--End of Hidden Items-->
+    </Grid>
+</UserControl>

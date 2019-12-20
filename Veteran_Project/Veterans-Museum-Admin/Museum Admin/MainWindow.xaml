@@ -1,0 +1,31 @@
+﻿<Window x:Class="Museum_Admin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museum_Admin"
+        mc:Ignorable="d"
+        Title="Alabama Veterans Museum - Administrator" Height="1080" Width="1920" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Background="#FF193366">
+            <Button x:Name="NavBtn_Veterans" Style="{StaticResource NavButton}" Content="Veterans" Click="NavBtn_Veterans_Click"/>
+            <Button x:Name="NavBtn_Cemeteries" Style="{StaticResource NavButton}" Content="Cemeteries" Click="NavBtn_Cemeteries_Click"/>
+            <Button x:Name="NavBtn_Branches" Style="{StaticResource NavButton}" Content="Branches" Click="NavBtn_Branches_Click"/>
+            <Button x:Name="NavBtn_Ranks" Style="{StaticResource NavButton}" Content="Ranks" Click="NavBtn_Ranks_Click"/>
+            <Button x:Name="NavBtn_Conflicts" Style="{StaticResource NavButton}" Content="Conflicts" Click="NavBtn_Conflicts_Click"/>
+            <Button x:Name="NavBtn_Awards" Style="{StaticResource NavButton}" Content="Awards" Click="NavBtn_Awards_Click"/>
+            <Button x:Name="NavBtn_Comments" Style="{StaticResource NavButton}" Content="User Comments" Click="NavBtn_Comments_Click"/>
+            <Button x:Name="NavBtn_Queries" Style="{StaticResource NavButton}" Content="Queries" Click="NavBtn_Queries_Click"/>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <ContentControl Content="{Binding MainWindowContent, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+    </Grid>
+</Window>

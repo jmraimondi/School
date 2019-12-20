@@ -1,0 +1,16 @@
+﻿<Window x:Class="Museum_Admin.ConflictDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museum_Admin"
+        mc:Ignorable="d"
+        Title="Conflict Details" Height="250" Width="300"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Conflict" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,65,0,0" FontWeight="Bold"/>
+        <ComboBox HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Width="250" ItemsSource="{Binding Conflicts}" SelectedItem="{Binding Path=ConflictInfo.Conflict}" IsSynchronizedWithCurrentItem="True"/>
+        <Button x:Name="Btn_Ok" Content="Ok" HorizontalAlignment="Left" Margin="105,180,0,0" VerticalAlignment="Top" Width="75" Click="Btn_Ok_Click"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="195,180,0,0" VerticalAlignment="Top" Width="75" Click="Btn_Cancel_Click"/>
+    </Grid>
+</Window>

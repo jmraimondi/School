@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="Museum_Admin.Queries"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Museum_Admin"
+             mc:Ignorable="d" 
+             d:DesignHeight="1050" d:DesignWidth="1700" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*" MinHeight="300"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <!--Total Database Queries-->
+                    <Label Content="Total Database Queries" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+                    <Label Content="Count of veterans in the database." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0"/>
+                    <Button x:Name="Btn_TotalCountQuery" Content="Run Query" HorizontalAlignment="Left" Margin="400,33,0,0" VerticalAlignment="Top" Width="100" Click="Btn_TotalCountQuery_Click"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <!--Cemetery Queries-->
+                    <Label Content="Cemetery Queries" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34,0,0" Width="120" ItemsSource="{Binding QueryTypeList}" SelectedItem="{Binding Path=CemQueryType}"/>
+                    <Label Content="veterans in" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,0"/>
+                    <ComboBox x:Name="CmbBox_Cemetery"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,34,0,0" Width="400" ItemsSource="{Binding CemList}" SelectedItem="{Binding Path=SelectedCemetery}" SelectionChanged="CmbBox_Cemetery_SelectionChanged"/>
+                    <Label Content="cemetery?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="610,30,0,0"/>
+                    <Button x:Name="Btn_CemeteryQuery" Content="Run Query" HorizontalAlignment="Left" Margin="700,33,0,0" VerticalAlignment="Top" Width="100" Click="Btn_CemeteryQuery_Click"/>
+                    <Label Content="List cemeteries with veteran count per cemetery." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0"/>
+                    <Button x:Name="Btn_CemeteryListQuery" Content="Run Query" HorizontalAlignment="Left" Margin="400,85,0,0" VerticalAlignment="Top" Width="100" Click="Btn_CemeteryListQuery_Click"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <!--Branch Queries-->
+                    <Label Content="Branch Queries" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34,0,0" Width="120" ItemsSource="{Binding QueryTypeList}" SelectedItem="{Binding Path=BranchQueryType}"/>
+                    <Label Content="veterans in" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,0"/>
+                    <ComboBox x:Name="CmbBox_Branch"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,34,0,0" Width="400" ItemsSource="{Binding BranchList}" SelectedItem="{Binding Path=SelectedBranch}" SelectionChanged="CmbBox_Branch_SelectionChanged"/>
+                    <Label Content="branch?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="610,30,0,0"/>
+                    <Button x:Name="Btn_BranchQuery" Content="Run Query" HorizontalAlignment="Left" Margin="700,33,0,0" VerticalAlignment="Top" Width="100" Click="Btn_BranchQuery_Click"/>
+                    <Label Content="List branches with veteran count per branch." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0"/>
+                    <Button x:Name="Btn_BranchListQuery" Content="Run Query" HorizontalAlignment="Left" Margin="400,85,0,0" VerticalAlignment="Top" Width="100" Click="Btn_BranchListQuery_Click"/>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <!--Conflict Queries-->
+                    <Label Content="Conflict Queries" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34,0,0" Width="120" ItemsSource="{Binding QueryTypeList}" SelectedItem="{Binding Path=ConflictQueryType}"/>
+                    <Label Content="veterans in" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,0"/>
+                    <ComboBox x:Name="CmbBox_Conflict" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,34,0,0" Width="400" ItemsSource="{Binding ConflictList}" SelectedItem="{Binding Path=SelectedConflict}" SelectionChanged="CmbBox_Conflict_SelectionChanged"/>
+                    <Label Content="conflict?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="610,30,0,0"/>
+                    <Button x:Name="Btn_ConflictQuery" Content="Run Query" HorizontalAlignment="Left" Margin="700,33,0,0" VerticalAlignment="Top" Width="100" Click="Btn_ConflictQuery_Click"/>
+                    <Label Content="List conflicts with veteran count per branch." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0"/>
+                    <Button x:Name="Btn_ConflictListQuery" Content="Run Query" HorizontalAlignment="Left" Margin="400,85,0,0" VerticalAlignment="Top" Width="100" Click="Btn_ConflictListQuery_Click"/>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <!--Branches - Cemetery Query-->
+                    <Label Content="Branches - Cemetery Query" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34,0,0" Width="120" ItemsSource="{Binding QueryTypeList}" SelectedItem="{Binding Path=BranchCemeteryQueryType}"/>
+                    <ComboBox x:Name="CmbBox_BranchBranchCem"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,34,0,0" Width="400" ItemsSource="{Binding BranchList}" SelectedItem="{Binding Path=SelectedBranchBranchCem}" SelectionChanged="CmbBox_BranchBranchCem_SelectionChanged"/>
+                    <Label Content="veterans in" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="525,30,0,0"/>
+                    <ComboBox x:Name="CmbBox_CemeteryBranchCem"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,34,0,0" Width="400" ItemsSource="{Binding CemList}" SelectedItem="{Binding Path=SelectedCemeteryBranchCem}" SelectionChanged="CmbBox_CemeteryBranchCem_SelectionChanged"/>
+                    <Label Content="cemetery?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1015,30,0,0"/>
+                    <Button x:Name="Btn_BranchCemQuery" Content="Run Query" HorizontalAlignment="Left" Margin="1110,33,0,0" VerticalAlignment="Top" Width="100" Click="Btn_BranchCemQuery_Click"/>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <!--Branches - Conflict Query-->
+                    <Label Content="Branches - Conflict Query" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34,0,0" Width="120" ItemsSource="{Binding QueryTypeList}" SelectedItem="{Binding Path=BranchConflictQueryType}"/>
+                    <ComboBox x:Name="CmbBox_BranchBranchConflict"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,34,0,0" Width="400" ItemsSource="{Binding BranchList}" SelectedItem="{Binding Path=SelectedBranchBranchConflict}" SelectionChanged="CmbBox_BranchBranchConflict_SelectionChanged"/>
+                    <Label Content="veterans in" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="525,30,0,0"/>
+                    <ComboBox x:Name="CmbBox_ConflictBranchConflict"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,34,0,0" Width="400" ItemsSource="{Binding ConflictList}" SelectedItem="{Binding Path=SelectedConflictBranchConflict}" SelectionChanged="CmbBox_ConflictBranchConflict_SelectionChanged"/>
+                    <Label Content="conflict?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1015,30,0,0"/>
+                    <Button x:Name="Btn_BranchConflictQuery" Content="Run Query" HorizontalAlignment="Left" Margin="1110,33,0,0" VerticalAlignment="Top" Width="100" Click="Btn_BranchConflictQuery_Click"/>
+                </Grid>
+                <Grid Grid.Row="6">
+                    <!--Conflicts - Cemetery Query-->
+                    <Label Content="Conflict - Cemetery Query" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,34,0,0" Width="120" ItemsSource="{Binding QueryTypeList}" SelectedItem="{Binding Path=ConflictCemeteryQueryType}"/>
+                    <ComboBox x:Name="CmbBox_ConflictConflictCem"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,34,0,0" Width="400" ItemsSource="{Binding ConflictList}" SelectedItem="{Binding Path=SelectedConflictConflictCem}" SelectionChanged="CmbBox_ConflictConflictCem_SelectionChanged"/>
+                    <Label Content="veterans in" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="525,30,0,0"/>
+                    <ComboBox x:Name="CmbBox_CemeteryConflictCem"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,34,0,0" Width="400" ItemsSource="{Binding CemList}" SelectedItem="{Binding Path=SelectedCemeteryConflictCem}" SelectionChanged="CmbBox_CemeteryConflictCem_SelectionChanged"/>
+                    <Label Content="cemetery?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1015,30,0,0"/>
+                    <Button x:Name="Btn_ConflictCemQuery" Content="Run Query" HorizontalAlignment="Left" Margin="1110,33,0,0" VerticalAlignment="Top" Width="100" Click="Btn_ConflictCemQuery_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
